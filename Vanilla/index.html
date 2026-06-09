@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AppleDesignSystem — Vanilla HTML/CSS</title>
+  <link rel="stylesheet" href="AppleDesignSystem.css">
+  <link rel="stylesheet" href="AppleComponents.css">
+</head>
+<body>
+  <div style="max-width: 480px; margin: 0 auto; padding: 16px;">
+    
+    <!-- Card de Perfil -->
+    <div class="apple-widget" style="text-align: center; margin-bottom: 16px;">
+      <div class="apple-avatar apple-avatar--xl" style="margin: 0 auto 16px; background: #007AFF;">
+        JA
+      </div>
+      <h1 class="apple-title2">João Appleseed</h1>
+      <p class="apple-subhead" style="color: var(--ds-label-secondary); margin-top: 4px;">
+        joao@example.com
+      </p>
+    </div>
+
+    <!-- Stats -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px;">
+      <div class="apple-widget">
+        <div class="apple-stat-icon" style="color: var(--ds-green);">💰</div>
+        <div class="apple-caption1" style="margin-top: 8px;">Receita</div>
+        <div class="apple-title2" style="margin-top: 4px;">$12.345</div>
+      </div>
+      <div class="apple-widget">
+        <div class="apple-stat-icon" style="color: var(--ds-blue);">👤</div>
+        <div class="apple-caption1" style="margin-top: 8px;">Usuários</div>
+        <div class="apple-title2" style="margin-top: 4px;">1.234</div>
+      </div>
+    </div>
+
+    <!-- Lista -->
+    <div class="apple-list-header">CONFIGURAÇÕES</div>
+    <div class="apple-list" style="margin-bottom: 16px;">
+      <div class="apple-list-item">
+        <div class="apple-list-item-icon" style="background: var(--ds-blue);">📶</div>
+        <div class="apple-list-item-content">
+          <div class="apple-list-item-title">Wi-Fi</div>
+          <div class="apple-list-item-subtitle">Rede Doméstica</div>
+        </div>
+        <div class="apple-list-item-chevron">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+        </div>
+      </div>
+      <div class="apple-list-item">
+        <div class="apple-list-item-icon" style="background: var(--ds-blue);">📱</div>
+        <div class="apple-list-item-content">
+          <div class="apple-list-item-title">Bluetooth</div>
+        </div>
+        <div class="apple-list-item-value">Ligado</div>
+        <div class="apple-list-item-chevron">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+        </div>
+      </div>
+      <div class="apple-list-item">
+        <div class="apple-list-item-icon" style="background: var(--ds-red);">🔔</div>
+        <div class="apple-list-item-content">
+          <div class="apple-list-item-title">Notificações</div>
+        </div>
+        <div class="apple-list-item-value">3</div>
+        <div class="apple-list-item-chevron">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Progresso -->
+    <div class="apple-widget" style="margin-bottom: 16px;">
+      <h3 class="apple-headline" style="margin-bottom: 12px;">Progresso</h3>
+      <div class="apple-progress" style="margin-bottom: 12px;">
+        <div class="apple-progress-fill" style="width: 65%;"></div>
+      </div>
+      <div style="display: flex; justify-content: space-between;">
+        <span class="apple-caption1">Upload</span>
+        <span class="apple-caption1">65%</span>
+      </div>
+    </div>
+
+    <!-- Badges -->
+    <div class="apple-widget" style="margin-bottom: 16px;">
+      <h3 class="apple-headline" style="margin-bottom: 12px;">Badges</h3>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        <span class="apple-badge apple-badge--blue">Novo</span>
+        <span class="apple-badge apple-badge--green">Ativo</span>
+        <span class="apple-badge apple-badge--red">Erro</span>
+        <span class="apple-badge apple-badge--orange apple-badge--outlined">Pendente</span>
+      </div>
+    </div>
+
+    <!-- Toggle -->
+    <div class="apple-widget" style="margin-bottom: 16px;">
+      <div style="display: flex; align-items: center; justify-content: space-between;">
+        <span class="apple-body">Modo Escuro</span>
+        <button class="apple-toggle" role="switch" aria-checked="false" onclick="this.setAttribute('aria-checked', this.getAttribute('aria-checked') === 'true' ? 'false' : 'true')"></button>
+      </div>
+    </div>
+
+    <!-- Input -->
+    <div class="apple-widget" style="margin-bottom: 16px;">
+      <div class="apple-input-group">
+        <label class="apple-input-label">Email</label>
+        <input type="email" class="apple-input" placeholder="seu@email.com">
+      </div>
+    </div>
+
+    <!-- Botões -->
+    <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px;">
+      <button class="apple-button apple-button--primary apple-button--full">
+        Continuar
+      </button>
+      <button class="apple-button apple-button--secondary apple-button--full">
+        Entrar com Apple
+      </button>
+      <button class="apple-button apple-button--destructive apple-button--full">
+        Excluir Conta
+      </button>
+    </div>
+
+    <!-- Loading -->
+    <div class="apple-widget" style="margin-bottom: 16px; text-align: center;">
+      <h3 class="apple-headline" style="margin-bottom: 12px;">Carregando</h3>
+      <div style="display: flex; gap: 24px; justify-content: center; align-items: center;">
+        <div class="apple-loading--spinner"></div>
+        <div class="apple-loading--dots">
+          <div class="apple-loading--dot"></div>
+          <div class="apple-loading--dot"></div>
+          <div class="apple-loading--dot"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Circular Progress -->
+    <div class="apple-widget" style="text-align: center;">
+      <h3 class="apple-headline" style="margin-bottom: 12px;">Progresso Circular</h3>
+      <div style="display: flex; gap: 24px; justify-content: center;">
+        <div class="apple-progress-circular" style="width: 80px; height: 80px;">
+          <svg width="80" height="80">
+            <circle class="apple-progress-circular-track" cx="40" cy="40" r="36" stroke-width="8"/>
+            <circle class="apple-progress-circular-fill" cx="40" cy="40" r="36" stroke-width="8" stroke="var(--ds-blue)" stroke-dasharray="226" stroke-dashoffset="56"/>
+          </svg>
+          <span class="apple-progress-label">75%</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
