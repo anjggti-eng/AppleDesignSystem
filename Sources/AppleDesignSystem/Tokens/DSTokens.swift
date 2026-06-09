@@ -1,8 +1,62 @@
 import SwiftUI
 
-// MARK: - Color Tokens
+// MARK: - Color Tokens (Semantic Naming)
 
 public enum DSColor {
+
+    // MARK: - Action (Interactive Elements)
+
+    public enum Action {
+        public static let background = DSColor.System.blue
+        public static let backgroundPressed = DSColor.System.blue.opacity(0.8)
+        public static let backgroundDisabled = DSColor.System.gray.opacity(0.3)
+
+        public static let foreground = Color.white
+        public static let foregroundDisabled = DSColor.Label.tertiary
+    }
+
+    // MARK: - Destructive (Dangerous Actions)
+
+    public enum Destructive {
+        public static let background = DSColor.System.red
+        public static let backgroundPressed = DSColor.System.red.opacity(0.8)
+        public static let backgroundDisabled = DSColor.System.gray.opacity(0.3)
+
+        public static let foreground = Color.white
+        public static let foregroundDisabled = DSColor.Label.tertiary
+    }
+
+    // MARK: - Success (Positive Feedback)
+
+    public enum Success {
+        public static let background = DSColor.System.green
+        public static let foreground = Color.white
+        public static let muted = DSColor.System.green.opacity(0.1)
+    }
+
+    // MARK: - Warning (Caution)
+
+    public enum Warning {
+        public static let background = DSColor.System.orange
+        public static let foreground = Color.white
+        public static let muted = DSColor.System.orange.opacity(0.1)
+    }
+
+    // MARK: - Error (Errors & Alerts)
+
+    public enum Error {
+        public static let background = DSColor.System.red
+        public static let foreground = Color.white
+        public static let muted = DSColor.System.red.opacity(0.1)
+    }
+
+    // MARK: - Information (Neutral Info)
+
+    public enum Information {
+        public static let background = DSColor.System.blue
+        public static let foreground = Color.white
+        public static let muted = DSColor.System.blue.opacity(0.1)
+    }
 
     // MARK: - Background
 
@@ -59,6 +113,23 @@ public enum DSColor {
         public static let secondary = Color.gray.opacity(0.15)
         public static let tertiary = Color.gray.opacity(0.1)
         #endif
+    }
+
+    // MARK: - Surface (Cards, Sheets, etc.)
+
+    public enum Surface {
+        public static let primary = Background.primary
+        public static let secondary = Background.secondary
+        public static let elevated = Background.elevated
+        public static let overlay = Color.black.opacity(0.4)
+    }
+
+    // MARK: - Border
+
+    public enum Border {
+        public static let primary = Fill.primary
+        public static let secondary = Fill.secondary
+        public static let focus = DSColor.System.blue
     }
 
     // MARK: - System Colors

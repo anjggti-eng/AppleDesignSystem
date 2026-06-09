@@ -7,37 +7,55 @@ public enum DSLoadingStyle {
     case dots
     case pulse
     case progress
+    case shimmer
+    case skeleton
 }
 
 public struct DSLoadingIndicator: View {
     let style: DSLoadingStyle
     let color: Color
     let size: CGFloat
+    let text: String?
 
     public init(
         style: DSLoadingStyle = .spinner,
         color: Color = DSColor.System.blue,
-        size: CGFloat = 24
+        size: CGFloat = 24,
+        text: String? = nil
     ) {
         self.style = style
         self.color = color
         self.size = size
+        self.text = text
     }
 
     public var body: some View {
-        Group {
-            switch style {
-            case .spinner:
-                spinnerView
-            case .dots:
-                dotsView
-            case .pulse:
-                pulseView
-            case .progress:
-                progressView
+        VStack(spacing: DSSpacing.md) {
+            Group {
+                switch style {
+                case .spinner:
+                    spinnerView
+                case .dots:
+                    dotsView
+                case .pulse:
+                    pulseView
+                case .progress:
+                    progressView
+                case .shimmer:
+                    shimmerView
+                case .skeleton:
+                    skeletonView
+                }
+            }
+            .frame(width: size, height: size)
+
+            if let text = text {
+                Text(text)
+                    .dsTextStyle(.subheadline)
+                    .foregroundStyle(DSColor.Label.secondary)
+                    .accessibilityLabel(text)
             }
         }
-        .frame(width: size, height: size)
     }
 
     // MARK: - Spinner
@@ -67,8 +85,10 @@ public struct DSLoadingIndicator: View {
         }
     }
 
+    @State private var dotScales: [CGFloat] = [1.0, 1.0, 1.0]
+
     private func scale(for index: Int) -> CGFloat {
-        return 1.0
+        return dotScales.indices.contains(index) ? dotScales[index] : 1.0
     }
 
     // MARK: - Pulse
@@ -106,6 +126,32 @@ public struct DSLoadingIndicator: View {
     }
 
     @State private var progress: Double = 0
+
+    // MARK: - Shimmer
+
+    private var shimmerView: some View {
+        Rectangle()
+            .fill(DSColor.Fill.secondary)
+            .frame(height: size)
+            .dsShimmer()
+    }
+
+    // MARK: - Skeleton
+
+    private var skeletonView: some View {
+        VStack(spacing: DSSpacing.sm) {
+            RoundedRectangle(cornerRadius: 4)
+                .fill(DSColor.Fill.secondary)
+                .frame(height: 12)
+                .dsShimmer()
+
+            RoundedRectangle(cornerRadius: 4)
+                .fill(DSColor.Fill.secondary)
+                .frame(height: 12)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .dsShimmer()
+        }
+    }
 }
 
 // MARK: - DS Loading Overlay
@@ -113,10 +159,16 @@ public struct DSLoadingIndicator: View {
 public struct DSLoadingOverlay: View {
     let isLoading: Bool
     let message: String?
+    let style: DSLoadingStyle
 
-    public init(isLoading: Bool, message: String? = nil) {
+    public init(
+        isLoading: Bool,
+        message: String? = nil,
+        style: DSLoadingStyle = .spinner
+    ) {
         self.isLoading = isLoading
         self.message = message
+        self.style = style
     }
 
     public var body: some View {
@@ -126,7 +178,7 @@ public struct DSLoadingOverlay: View {
                     .ignoresSafeArea()
 
                 VStack(spacing: DSSpacing.md) {
-                    DSLoadingIndicator(style: .spinner, size: 32)
+                    DSLoadingIndicator(style: style, size: 32)
 
                     if let message = message {
                         Text(message)
@@ -140,18 +192,139 @@ public struct DSLoadingOverlay: View {
             }
             .transition(.opacity)
             .animation(.easeInOut(duration: 0.2), value: isLoading)
+            .accessibilityElement(children: .combine)
+            .accessibilityLabel(Text(message ?? "Carregando"))
         }
+    }
+}
+
+// MARK: - DSNotificationBanner
+
+public enum DSBannerStyle {
+    case info, success, warning, error
+}
+
+public struct DSNotificationBanner: View {
+    let style: DSBannerStyle
+    let title: String
+    let message: String?
+    let icon: String?
+    let duration: Double
+    @Binding var isPresented: Bool
+
+    @State private var offset: CGFloat = -100
+
+    public init(
+        style: DSBannerStyle = .info,
+        title: String,
+        message: String? = nil,
+        icon: String? = nil,
+        duration: Double = 3.0,
+        isPresented: Binding<Bool>
+    ) {
+        self.style = style
+        self.title = title
+        self.message = message
+        self.icon = icon
+        self.duration = duration
+        self._isPresented = isPresented
+    }
+
+    public var body: some View {
+        VStack {
+            if isPresented {
+                HStack(spacing: DSSpacing.md) {
+                    Image(systemName: icon ?? defaultIcon)
+                        .font(.title3)
+                        .foregroundStyle(bannerColor)
+                        .accessibilityHidden(true)
+
+                    VStack(alignment: .leading, spacing: DSSpacing.xs) {
+                        Text(title)
+                            .dsTextStyle(.subheadline)
+                            .fontWeight(.semibold)
+
+                        if let message = message {
+                            Text(message)
+                                .dsTextStyle(.caption)
+                                .foregroundStyle(DSColor.Label.secondary)
+                        }
+                    }
+
+                    Spacer()
+
+                    Button(action: {
+                        DSHaptics.impact(.light)
+                        withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                            isPresented = false
+                        }
+                    }) {
+                        Image(systemName: "xmark")
+                            .font(.caption)
+                            .foregroundStyle(DSColor.Label.tertiary)
+                    }
+                    .accessibilityLabel("Fechar")
+                }
+                .padding(DSSpacing.md)
+                .background(bannerBackground)
+                .clipShape(RoundedRectangle(cornerRadius: DSRadius.lg, style: .continuous))
+                .dsShadow(DSShadow.lg)
+                .padding(.horizontal, DSSpacing.lg)
+                .offset(y: offset)
+                .transition(.move(edge: .top))
+                .animation(.spring(response: 0.4, dampingFraction: 0.7), value: offset)
+                .onAppear {
+                    withAnimation {
+                        offset = 0
+                    }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
+                        withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                            isPresented = false
+                        }
+                    }
+                }
+            }
+
+            Spacer()
+        }
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(Text("\(title). \(message ?? "")"))
+    }
+
+    private var defaultIcon: String {
+        switch style {
+        case .info: return "info.circle.fill"
+        case .success: return "checkmark.circle.fill"
+        case .warning: return "exclamationmark.triangle.fill"
+        case .error: return "xmark.circle.fill"
+        }
+    }
+
+    private var bannerColor: Color {
+        switch style {
+        case .info: return DSColor.System.blue
+        case .success: return DSColor.System.green
+        case .warning: return DSColor.System.orange
+        case .error: return DSColor.System.red
+        }
+    }
+
+    private var bannerBackground: some ShapeStyle {
+        AnyShapeStyle(bannerColor.opacity(0.1))
     }
 }
 
 // MARK: - Preview
 
 #Preview {
-    VStack(spacing: 30) {
-        DSLoadingIndicator(style: .spinner)
-        DSLoadingIndicator(style: .dots)
-        DSLoadingIndicator(style: .pulse)
-        DSLoadingIndicator(style: .progress)
+    @Previewable @State var showBanner = true
+
+    return VStack {
+        DSNotificationBanner(
+            style: .success,
+            title: "Sucesso!",
+            message: "Seus dados foram salvos",
+            isPresented: $showBanner
+        )
     }
-    .padding()
 }

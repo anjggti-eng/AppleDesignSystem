@@ -13,17 +13,23 @@ public struct DSCard<Content: View>: View {
     let style: DSCardStyle
     let cornerRadius: CGFloat
     let padding: CGFloat
+    let accessibilityLabel: String?
+    let accessibilityHint: String?
     let content: Content
 
     public init(
         style: DSCardStyle = .elevated,
         cornerRadius: CGFloat = DSRadius.lg,
         padding: CGFloat = DSSpacing.lg,
+        accessibilityLabel: String? = nil,
+        accessibilityHint: String? = nil,
         @ViewBuilder content: () -> Content
     ) {
         self.style = style
         self.cornerRadius = cornerRadius
         self.padding = padding
+        self.accessibilityLabel = accessibilityLabel
+        self.accessibilityHint = accessibilityHint
         self.content = content()
     }
 
@@ -36,6 +42,9 @@ public struct DSCard<Content: View>: View {
         .background(cardBackground)
         .clipShape(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
         .dsShadow(cardShadow)
+        .accessibilityElement(children: .contain)
+        .accessibilityLabel(accessibilityLabel.map { Text($0) } ?? Text("Cartão"))
+        .accessibilityHint(accessibilityHint.map { Text($0) } ?? Text(""))
     }
 
     // MARK: - Style Helpers
@@ -87,6 +96,7 @@ public struct DSCardWithHeader<Header: View, Content: View>: View {
         VStack(alignment: .leading, spacing: DSSpacing.md) {
             header
                 .dsTextStyle(.headline)
+                .accessibilityAddTraits(.isHeader)
 
             Divider()
 
@@ -97,6 +107,7 @@ public struct DSCardWithHeader<Header: View, Content: View>: View {
         .background(Color(.systemBackground))
         .clipShape(RoundedRectangle(cornerRadius: DSRadius.lg, style: .continuous))
         .dsShadow(DSShadow.md)
+        .accessibilityElement(children: .contain)
     }
 }
 
@@ -105,7 +116,7 @@ public struct DSCardWithHeader<Header: View, Content: View>: View {
 #Preview {
     ScrollView {
         VStack(spacing: 16) {
-            DSCard {
+            DSCard(accessibilityLabel: "Cartão de perfil") {
                 Text("Elevated Card")
                     .dsTextStyle(.headline)
             }

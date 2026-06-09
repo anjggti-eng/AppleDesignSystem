@@ -1,20 +1,13 @@
 // AppleDesignSystem
 // A professional design system replicating Apple's ecosystem
 
-// MARK: - Tokens
-@_exported import struct SwiftUI.Color
-@_exported import struct SwiftUI.Font
-@_exported import struct SwiftUI.CGFloat
-@_exported import struct SwiftUI.EdgeInsets
-@_exported import struct SwiftUI.Image
-
 // MARK: - Module Info
 
 /*
  The AppleDesignSystem module provides:
 
  Tokens:
-   - DSColor: Semantic colors (background, label, fill, system)
+   - DSColor: Semantic colors (action, destructive, success, warning, error, background, label, fill, surface, border)
    - DSTypography: Font system (SF Pro, sizes, weights)
    - DSSpacing: Spacing and radius tokens
    - DSAnimation: Spring animations and timing
@@ -30,12 +23,26 @@
    - DSShimmerModifier: Loading shimmer effect
 
  Components:
-   - DSButton: iOS-style button with multiple variants
+   - DSButton: iOS-style button with multiple variants and accessibility
    - DSCard: Card containers
-   - DSTextField: Input fields
+   - DSTextField: Input fields with error states
    - DSBadge: Status badges
-   - DSAvatar: User avatars
+   - DSAvatar: User avatars with accessibility
+   - DSToggle: Toggle with haptic feedback
+   - DSSlider: Slider with step support
+   - DSList: List components
+   - DSProgressView: Progress indicators
+   - DSAlert: Alert dialogs
+   - DSSheet: Bottom sheets
    - DSLoadingIndicator: Loading states
+   - DSDatePicker: Date picker
+   - DSNavigation: Navigation bar
+   - DSProfile: Profile components
+   - DSChart: Charts (bar, line, circular)
+   - DSTimer: Timer, clock, stopwatch
+   - DSOnboarding: Onboarding screens
+   - DSTooltip: Tooltips
+   - DSNotificationBanner: Notification banners
 */
 
 // Usage example:

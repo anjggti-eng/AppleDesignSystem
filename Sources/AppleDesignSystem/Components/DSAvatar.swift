@@ -61,6 +61,7 @@ public struct DSAvatar: View {
             Circle()
                 .stroke(Color(.systemBackground), lineWidth: 2)
         )
+        .accessibilityLabel(Text("Avatar de \(name)"))
     }
 
     private var initialsView: some View {
@@ -71,6 +72,7 @@ public struct DSAvatar: View {
             Text(initials)
                 .font(.system(size: size.fontSize, weight: .semibold, design: .rounded))
                 .foregroundStyle(.white)
+                .accessibilityHidden(true)
         }
     }
 
@@ -128,6 +130,7 @@ public struct DSAvatarGroup: View {
                     Text("+\(remainingCount)")
                         .font(.system(size: size.fontSize * 0.9, weight: .semibold))
                         .foregroundStyle(DSColor.Label.secondary)
+                        .accessibilityHidden(true)
                 }
                 .frame(width: size.dimension, height: size.dimension)
                 .clipShape(Circle())
@@ -137,6 +140,9 @@ public struct DSAvatarGroup: View {
                 )
             }
         }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(Text("Grupo de \(names.count) pessoas"))
+        .accessibilityValue(Text("\(visibleNames.count) visíveis, \(remainingCount) adicionais"))
     }
 
     private var visibleNames: [String] {

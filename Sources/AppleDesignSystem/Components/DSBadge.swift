@@ -1,5 +1,149 @@
 import SwiftUI
 
+// MARK: - DSTooltip
+
+public enum DSTooltipPosition {
+    case top, bottom, leading, trailing
+}
+
+public struct DSTooltip: ViewModifier {
+    let text: String
+    let position: DSTooltipPosition
+    let isVisible: Bool
+
+    public func body(content: Content) -> some View {
+        content
+            .overlay(
+                Group {
+                    if isVisible {
+                        tooltipView
+                    }
+                }
+            )
+    }
+
+    private var tooltipView: some View {
+        VStack(spacing: 0) {
+            if position == .bottom { Spacer() }
+
+            if position == .top || position == .bottom {
+                VStack(spacing: 4) {
+                    Text(text)
+                        .font(.caption)
+                        .foregroundStyle(.white)
+                        .padding(.horizontal, DSSpacing.sm)
+                        .padding(.vertical, DSSpacing.xs)
+                        .background(DSColor.Label.primary)
+                        .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
+                }
+            }
+
+            if position == .top { Spacer() }
+        }
+        .padding(position == .top || position == .bottom ? .horizontal : .vertical, 4)
+    }
+}
+
+extension View {
+    public func tooltip(_ text: String, position: DSTooltipPosition = .top, isVisible: Bool = true) -> some View {
+        modifier(DSTooltip(text: text, position: position, isVisible: isVisible))
+    }
+}
+
+// MARK: - DSContextMenuItem
+
+public struct DSContextMenuItem: View {
+    let icon: String
+    let title: String
+    let color: Color
+    let action: () -> Void
+
+    public init(
+        icon: String,
+        title: String,
+        color: Color = DSColor.Label.primary,
+        action: @escaping () -> Void
+    ) {
+        self.icon = icon
+        self.title = title
+        self.color = color
+        self.action = action
+    }
+
+    public var body: some View {
+        Button(action: {
+            DSHaptics.impact(.light)
+            action()
+        }) {
+            HStack {
+                Image(systemName: icon)
+                    .frame(width: 20)
+                Text(title)
+            }
+        }
+    }
+}
+
+// MARK: - DSConfirmationDialog
+
+public struct DSConfirmationDialog: ViewModifier {
+    let title: String
+    let message: String?
+    let buttons: [DSAlertButton]
+    @Binding var isPresented: Bool
+
+    public func body(content: Content) -> some View {
+        content
+            .confirmationDialog(
+                title,
+                isPresented: $isPresented,
+                titleVisibility: .visible
+            ) {
+                ForEach(buttons) { button in
+                    Button(role: button.role) {
+                        DSHaptics.impact(.light)
+                        isPresented = false
+                        button.action()
+                    } label: {
+                        Text(button.title)
+                    }
+                }
+            } message: {
+                if let message = message {
+                    Text(message)
+                }
+            }
+    }
+}
+
+public struct DSAlertButton: Identifiable {
+    public let id = UUID()
+    let title: String
+    let role: ButtonRole?
+    let action: () -> Void
+
+    public init(
+        title: String,
+        role: ButtonRole? = nil,
+        action: @escaping () -> Void = {}
+    ) {
+        self.title = title
+        self.role = role
+        self.action = action
+    }
+}
+
+extension View {
+    public func dsConfirmationDialog(
+        _ title: String,
+        message: String? = nil,
+        buttons: [DSAlertButton],
+        isPresented: Binding<Bool>
+    ) -> some View {
+        modifier(DSConfirmationDialog(title: title, message: message, buttons: buttons, isPresented: isPresented))
+    }
+}
+
 // MARK: - DSBadge
 
 public enum DSBadgeStyle {
@@ -45,6 +189,7 @@ public struct DSBadge: View {
                 Circle()
                     .fill(color.color)
                     .frame(width: 8, height: 8)
+                    .accessibilityLabel("Indicador")
             } else {
                 Text(text)
                     .font(.caption2)
@@ -54,6 +199,7 @@ public struct DSBadge: View {
                     .padding(.vertical, DSSpacing.xs)
                     .background(background)
                     .clipShape(Capsule())
+                    .accessibilityLabel(text)
             }
         }
     }
@@ -93,6 +239,7 @@ public struct DSCountBadge: View {
                     .padding(.vertical, DSSpacing.xxs)
                     .background(color.color)
                     .clipShape(Capsule())
+                    .accessibilityLabel("\(count) notificações")
             }
         }
     }
