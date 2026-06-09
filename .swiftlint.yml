@@ -1,0 +1,98 @@
+# SwiftLint Configuration
+# https://realm.github.io/SwiftLint/rule-directory.html
+
+disabled_rules:
+  - trailing_comma
+  - todo
+
+opt_in_rules:
+  - closure_spacing
+  - empty_count
+  - explicit_init
+  - fatal_error_message
+  - first_where
+  - force_unwrapping
+  - implicitly_unwrapped_optional
+  - operator_usage_whitespace
+  - overridden_super_call
+  - private_outlet
+  - prohibited_super_call
+  - redundant_nil_coalescing
+  - sorted_first_last
+  - toggle_bool
+  - unowned_variable_capture
+  - yoda_condition
+
+excluded:
+  - .build
+  - .swiftpm
+  - Pods
+  - Carthage
+  - DerivedData
+  - build
+  - vendor
+  - node_modules
+
+line_length:
+  warning: 120
+  error: 200
+  ignores_comments: true
+  ignores_urls: true
+
+type_body_length:
+  warning: 300
+  error: 500
+
+file_length:
+  warning: 500
+  error: 1000
+
+identifier_name:
+  min_length:
+    warning: 2
+    error: 1
+  max_length:
+    warning: 60
+    error: 80
+  excluded:
+    - id
+    - x
+    - y
+    - i
+    - j
+    - k
+
+type_name:
+  min_length:
+    warning: 3
+    error: 2
+  max_length:
+    warning: 50
+    error: 60
+  excluded:
+    - T
+    - U
+
+function_body_length:
+  warning: 50
+  error: 100
+
+function_parameter_count:
+  warning: 6
+  error: 8
+
+nesting:
+  type_level:
+    warning: 3
+  function_level:
+    warning: 5
+
+cyclomatic_complexity:
+  warning: 10
+  error: 20
+
+large_tuple:
+  warning: 3
+  error: 4
+
+reporter: "xcode"
