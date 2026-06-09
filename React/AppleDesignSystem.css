@@ -1,0 +1,150 @@
+/* ============================================
+   AppleDesignSystem — CSS Tokens
+   Design System para React/Web
+   ============================================ */
+
+:root {
+  /* === COLORS: ACTION === */
+  --ds-action-bg: #007AFF;
+  --ds-action-bg-pressed: #0062CC;
+  --ds-action-bg-disabled: #C7C7CC;
+  --ds-action-fg: #FFFFFF;
+  --ds-action-fg-disabled: #8E8E93;
+
+  /* === COLORS: DESTRUCTIVE === */
+  --ds-destructive-bg: #FF3B30;
+  --ds-destructive-bg-pressed: #D63029;
+  --ds-destructive-bg-disabled: #C7C7CC;
+  --ds-destructive-fg: #FFFFFF;
+
+  /* === COLORS: SEMANTIC === */
+  --ds-success: #34C759;
+  --ds-success-muted: rgba(52, 199, 89, 0.1);
+  --ds-warning: #FF9500;
+  --ds-warning-muted: rgba(255, 149, 0, 0.1);
+  --ds-error: #FF3B30;
+  --ds-error-muted: rgba(255, 59, 48, 0.1);
+  --ds-info: #007AFF;
+  --ds-info-muted: rgba(0, 122, 255, 0.1);
+
+  /* === COLORS: SYSTEM === */
+  --ds-blue: #007AFF;
+  --ds-green: #34C759;
+  --ds-red: #FF3B30;
+  --ds-orange: #FF9500;
+  --ds-yellow: #FFCC00;
+  --ds-purple: #AF52DE;
+  --ds-pink: #FF2D55;
+  --ds-teal: #5AC8FA;
+  --ds-indigo: #5856D6;
+  --ds-gray: #8E8E93;
+
+  /* === COLORS: BACKGROUND === */
+  --ds-bg-primary: #FFFFFF;
+  --ds-bg-secondary: #F2F2F7;
+  --ds-bg-tertiary: #FFFFFF;
+  --ds-bg-elevated: #FFFFFF;
+  --ds-bg-grouped: #F2F2F7;
+
+  /* === COLORS: LABEL === */
+  --ds-label-primary: #000000;
+  --ds-label-secondary: rgba(60, 60, 67, 0.6);
+  --ds-label-tertiary: rgba(60, 60, 67, 0.3);
+
+  /* === COLORS: FILL === */
+  --ds-fill-primary: rgba(120, 120, 128, 0.2);
+  --ds-fill-secondary: rgba(120, 120, 128, 0.16);
+  --ds-fill-tertiary: rgba(118, 118, 128, 0.12);
+
+  /* === COLORS: SURFACE === */
+  --ds-surface: #FFFFFF;
+  --ds-surface-overlay: rgba(0, 0, 0, 0.4);
+
+  /* === SPACING === */
+  --ds-space-xxs: 2px;
+  --ds-space-xs: 4px;
+  --ds-space-sm: 8px;
+  --ds-space-md: 12px;
+  --ds-space-lg: 16px;
+  --ds-space-xl: 20px;
+  --ds-space-xxl: 24px;
+  --ds-space-xxxl: 32px;
+  --ds-space-section: 40px;
+
+  /* === RADIUS === */
+  --ds-radius-sm: 8px;
+  --ds-radius-md: 12px;
+  --ds-radius-lg: 14px;
+  --ds-radius-xl: 16px;
+  --ds-radius-xxl: 20px;
+  --ds-radius-pill: 9999px;
+
+  /* === SHADOWS === */
+  --ds-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --ds-shadow-md: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --ds-shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.15);
+  --ds-shadow-xl: 0 8px 32px rgba(0, 0, 0, 0.2);
+
+  /* === BLUR (Glassmorphism) === */
+  --ds-blur-sm: 8px;
+  --ds-blur-md: 16px;
+  --ds-blur-lg: 32px;
+  --ds-blur-xl: 64px;
+
+  /* === ANIMATION === */
+  --ds-spring-default: cubic-bezier(0.35, 0.7, 0.65, 1);
+  --ds-spring-snappy: cubic-bezier(0.25, 0.8, 0.55, 1);
+  --ds-spring-bouncy: cubic-bezier(0.5, 0.6, 0.45, 1);
+  --ds-spring-gentle: cubic-bezier(0.45, 0.85, 0.55, 1);
+  --ds-duration-instant: 100ms;
+  --ds-duration-fast: 200ms;
+  --ds-duration-normal: 350ms;
+  --ds-duration-slow: 500ms;
+
+  /* === TYPOGRAPHY === */
+  --ds-font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+  --ds-font-family-rounded: -apple-system, BlinkMacSystemFont, 'SF Pro Rounded', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;
+  --ds-font-family-mono: 'SF Mono', SFMono-Regular, ui-monospace, monospace;
+}
+
+/* === DARK MODE === */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ds-bg-primary: #000000;
+    --ds-bg-secondary: #1C1C1E;
+    --ds-bg-tertiary: #2C2C2E;
+    --ds-bg-elevated: #1C1C1E;
+    --ds-bg-grouped: #000000;
+
+    --ds-label-primary: #FFFFFF;
+    --ds-label-secondary: rgba(235, 235, 245, 0.6);
+    --ds-label-tertiary: rgba(235, 235, 245, 0.3);
+
+    --ds-fill-primary: rgba(120, 120, 128, 0.36);
+    --ds-fill-secondary: rgba(120, 120, 128, 0.32);
+    --ds-fill-tertiary: rgba(118, 118, 128, 0.24);
+
+    --ds-action-bg: #0A84FF;
+    --ds-action-bg-pressed: #409CFF;
+    --ds-action-bg-disabled: #636366;
+
+    --ds-destructive-bg: #FF453A;
+    --ds-destructive-bg-pressed: #FF6961;
+    --ds-destructive-bg-disabled: #636366;
+
+    --ds-blue: #0A84FF;
+    --ds-green: #30D158;
+    --ds-red: #FF453A;
+    --ds-orange: #FF9F0A;
+    --ds-yellow: #FFD60A;
+    --ds-purple: #BF5AF2;
+    --ds-pink: #FF375F;
+    --ds-teal: #64D2FF;
+    --ds-indigo: #5E5CE6;
+
+    --ds-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --ds-shadow-md: 0 2px 8px rgba(0, 0, 0, 0.4);
+    --ds-shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.5);
+    --ds-shadow-xl: 0 8px 32px rgba(0, 0, 0, 0.6);
+  }
+}
