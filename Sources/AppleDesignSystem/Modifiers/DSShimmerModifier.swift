@@ -46,13 +46,6 @@ public struct DSShimmerModifier: ViewModifier {
                 }
             }
         }
-        .clipShape(content.shape ?? RoundedRectangle(cornerRadius: DSRadius.lg))
-    }
-}
-
-extension Shape {
-    func clipShape(_ shape: some Shape) -> some Shape {
-        self.clip(shape)
     }
 }
 

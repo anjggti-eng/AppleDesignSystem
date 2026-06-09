@@ -6,7 +6,8 @@ let package = Package(
     platforms: [
         .iOS(.v17),
         .macOS(.v14),
-        .visionOS(.v1)
+        .visionOS(.v1),
+        .watchOS(.v10)
     ],
     products: [
         .library(
@@ -14,17 +15,12 @@ let package = Package(
             targets: ["AppleDesignSystem"]
         ),
     ],
-    dependencies: [
-        // Add dependencies here if needed
-    ],
+    dependencies: [],
     targets: [
         .target(
             name: "AppleDesignSystem",
             dependencies: [],
-            path: "Sources/AppleDesignSystem",
-            resources: [
-                .process("Resources")
-            ]
+            path: "Sources/AppleDesignSystem"
         ),
         .testTarget(
             name: "AppleDesignSystemTests",

@@ -7,26 +7,58 @@ public enum DSColor {
     // MARK: - Background
 
     public enum Background {
-        public static let primary = Color("bgPrimary", bundle: .main)
-        public static let secondary = Color("bgSecondary", bundle: .main)
-        public static let tertiary = Color("bgTertiary", bundle: .main)
-        public static let elevated = Color("bgElevated", bundle: .main)
+        #if os(iOS) || os(visionOS)
+        public static let primary = Color(.systemBackground)
+        public static let secondary = Color(.secondarySystemBackground)
+        public static let tertiary = Color(.tertiarySystemBackground)
+        public static let elevated = Color(.systemBackground)
+        #elseif os(macOS)
+        public static let primary = Color(.windowBackgroundColor)
+        public static let secondary = Color(.controlBackgroundColor)
+        public static let tertiary = Color(.controlBackgroundColor)
+        public static let elevated = Color(.windowBackgroundColor)
+        #else
+        public static let primary = Color.white
+        public static let secondary = Color(white: 0.95)
+        public static let tertiary = Color(white: 0.98)
+        public static let elevated = Color.white
+        #endif
     }
 
     // MARK: - Label
 
     public enum Label {
-        public static let primary = Color("labelPrimary", bundle: .main)
-        public static let secondary = Color("labelSecondary", bundle: .main)
-        public static let tertiary = Color("labelTertiary", bundle: .main)
+        #if os(iOS) || os(visionOS)
+        public static let primary = Color(.label)
+        public static let secondary = Color(.secondaryLabel)
+        public static let tertiary = Color(.tertiaryLabel)
+        #elseif os(macOS)
+        public static let primary = Color(.labelColor)
+        public static let secondary = Color(.secondaryLabelColor)
+        public static let tertiary = Color(.tertiaryLabelColor)
+        #else
+        public static let primary = Color.black
+        public static let secondary = Color.gray
+        public static let tertiary = Color.gray.opacity(0.6)
+        #endif
     }
 
     // MARK: - Fill
 
     public enum Fill {
-        public static let primary = Color("fillPrimary", bundle: .main)
-        public static let secondary = Color("fillSecondary", bundle: .main)
-        public static let tertiary = Color("fillTertiary", bundle: .main)
+        #if os(iOS) || os(visionOS)
+        public static let primary = Color(.systemFill)
+        public static let secondary = Color(.secondarySystemFill)
+        public static let tertiary = Color(.tertiarySystemFill)
+        #elseif os(macOS)
+        public static let primary = Color(.controlColor)
+        public static let secondary = Color(.controlColor).opacity(0.5)
+        public static let tertiary = Color(.controlColor).opacity(0.3)
+        #else
+        public static let primary = Color.gray.opacity(0.2)
+        public static let secondary = Color.gray.opacity(0.15)
+        public static let tertiary = Color.gray.opacity(0.1)
+        #endif
     }
 
     // MARK: - System Colors
@@ -40,12 +72,13 @@ public enum DSColor {
     public static let pink = Color.pink
     public static let teal = Color.teal
     public static let indigo = Color.indigo
+    public static let gray = Color.gray
 }
 
 // MARK: - Hex Color Extension
 
 extension Color {
-    init(hex: String) {
+    public init(hex: String) {
         let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
         var int: UInt64 = 0
         Scanner(string: hex).scanHexInt64(&int)
