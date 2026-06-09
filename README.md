@@ -345,65 +345,7 @@ AppleDesignSystem/
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-AppleDesignSystem - Descrição
-O que é
-Um Design System universal que replica a estética visual da Apple em 6 stacks diferentes de desenvolvimento, com 50+ componentes e prompts de IA para geração automática de código.
 
-Stacks Suportadas
-Stack	Plataforma
-SwiftUI	iOS, macOS, watchOS, visionOS
-React	Web, Desktop
-Vue.js	Web, Desktop
-Angular	Web, Desktop
-Svelte	Web, Desktop
-HTML/CSS	Qualquer navegador
-Componentes Principais
-Botões com feedback háptico
-Cards com glassmorphism
-Campos de input com estados de erro
-Badges, Avatares, Toggles
-Listas, Progresso, Alertas
-Bottom Sheets, Banners
-Gráficos, Timers, Onboarding
-Design Tokens
-Cores semânticas (Ação, Destruição, Sucesso, Aviso, Erro)
-Espaçamento (2px a 32px)
-Raios (8px a pill)
-Sombras (sm a xl)
-Tipografia (large-title a caption2)
-Como Usar
-1. SwiftUI
-import AppleDesignSystem
-
-DSButton("Continuar", style: .filled) {}
-2. React
-import { HapticButton } from './AppleComponents';
-import './AppleDesignSystem.css';
-
-<HapticButton variant="primary">Continuar</HapticButton>
-3. HTML/CSS
-<link rel="stylesheet" href="AppleDesignSystem.css">
-<button class="apple-button apple-button--primary">Continuar</button>
-AI Agent
-Inclui System Prompts para usar IA como gerador de UI:
-
-Copie SYSTEM_PROMPT_UNIVERSAL.md
-Cole no Cursor, Claude Projects ou Custom GPT
-Pergunte: "Crie uma tela de login"
-O agente gera o código usando o Design System
-Arquitetura
-AppleDesignSystem/
-├── Sources/      → SwiftUI (20+ componentes)
-├── React/        → React/JSX + CSS
-├── Vue/          → Vue.js
-├── Angular/      → Angular
-├── Svelte/       → Svelte
-├── Vanilla/      → HTML/CSS
-├── Demo/         → App demo
-├── Tests/        → Testes unitários
-└── SYSTEM_PROMPT_*.md → Prompts de IA
-Resumo
-Ferramenta para desenvolvedores que querem criar interfaces com a estética Apple em qualquer plataforma, usando qualquer stack, com suporte a dark mode, acessibilidade e hápticos cross-platform.
 ---
 
 <div align="center">
