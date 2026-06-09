@@ -2,18 +2,21 @@
 
 # AppleDesignSystem
 
-### O Design System Universal para o Ecossistema Apple
+### O Design System Universal para TODAS as Stacks
 
-**Replicue a estética visual impressionante da Apple em QUALQUER plataforma**
+**Replicue a estética visual impressionante da Apple em QUALQUER plataforma, QUALQUER framework**
 
 ![Swift](https://img.shields.io/badge/Swift-5.9+-F05138?style=for-the-badge&logo=swift)
-![Plataformas](https://img.shields.io/badge/Plataformas-Windows%20|%20Linux%20|%20macOS%20|%20iOS%20|%20watchOS%20|%20visionOS-007AFF?style=for-the-badge)
+![React](https://img.shields.io/badge/React-18+-61DAFB?style=for-the-badge&logo=react)
+![Vue](https://img.shields.io/badge/Vue-3+-4FC08D?style=for-the-badge&logo=vue.js)
+![Angular](https://img.shields.io/badge/Angular-17+-DD0031?style=for-the-badge&logo=angular)
+![Svelte](https://img.shields.io/badge/Svelte-4+-FF3E00?style=for-the-badge&logo=svelte)
+![HTML/CSS](https://img.shields.io/badge/HTML%2FCSS-Vanilla-E34F26?style=for-the-badge&logo=html5)
 ![Licença](https://img.shields.io/badge/Licença-MIT-34C759?style=for-the-badge)
-![SPM](https://img.shields.io/badge/SPM-Compatível-brightgreen?style=for-the-badge&logo=swift)
 
 ---
 
-**12 Componentes • 5 Modificadores • 7 Sistemas de Tokens • Multiplataforma**
+**6 Stacks • 50+ Componentes • AI Agent Pronto • Multiplataforma**
 
 </div>
 
@@ -21,441 +24,263 @@
 
 ## Funciona em Todas as Plataformas
 
-| Plataforma | Suportado | Observações |
-|------------|:---------:|-------------|
-| **Windows** | ✅ | Suporte completo via Swift for Windows |
-| **Linux** | ✅ | Suporte completo via Swift for Linux |
-| **macOS** | ✅ | Experiência nativa macOS |
-| **iOS** | ✅ | iPhone e iPad |
-| **watchOS** | ✅ | Apple Watch |
-| **visionOS** | ✅ | Apple Vision Pro |
-
-> **Nota:** O feedback háptico só está disponível no iOS/visionOS. Nas outras plataformas, os hápticos não fazem nada silenciosamente — seu aplicativo continua funcionando perfeitamente.
+| Stack | Plataforma | Status |
+|-------|------------|:------:|
+| **SwiftUI** | iOS, macOS, watchOS, visionOS | ✅ |
+| **React** | Web, Desktop (Electron) | ✅ |
+| **Vue.js** | Web, Desktop | ✅ |
+| **Angular** | Web, Desktop | ✅ |
+| **Svelte** | Web, Desktop | ✅ |
+| **HTML/CSS** | Qualquer navegador | ✅ |
+| **Windows** | Via Swift for Windows | ✅ |
+| **Linux** | Via Swift for Linux | ✅ |
 
 ---
 
 ## Sumário
 
-- [Funcionalidades](#funcionalidades)
-- [Requisitos](#requisitos)
-- [Instalação](#instalação)
 - [Início Rápido](#início-rápido)
+- [Stacks](#stacks)
 - [Design Tokens](#design-tokens)
 - [Componentes](#componentes)
-- [Modificadores](#modificadores)
-- [Exemplos](#exemplos)
+- [AI Agent](#ai-agent)
 - [Arquitetura](#arquitetura)
 - [Contribuindo](#contribuindo)
 - [Licença](#licença)
 
 ---
 
-## Funcionalidades
-
-| Funcionalidade | Descrição |
-|----------------|-----------|
-| **Multiplataforma** | Funciona em Windows, Linux, macOS, iOS, watchOS, visionOS |
-| **Design Tokens** | Cores semânticas, tipografia, espaçamento e parâmetros de animação |
-| **Glassmorphism** | Materiais de desfoque nativos do iOS e efeito de vidro fosco |
-| **Feedback Háptico** | Respostas táteis do sistema (apenas iOS/visionOS) |
-| **Animações Spring** | Transições elásticas padrão Apple |
-| **Biblioteca de Componentes** | 12+ componentes de UI prontos para produção |
-| **Dynamic Type** | Suporte completo a acessibilidade |
-| **Modo Escuro** | Alternância automática claro/escuro |
-| **Zero Dependências** | SwiftUI puro, sem bibliotecas externas |
-
----
-
-## Requisitos
-
-| Dependência | Versão Mínima |
-|-------------|---------------|
-| Swift | 5.9+ |
-| iOS | 17.0+ |
-| macOS | 14.0+ |
-| watchOS | 10.0+ |
-| visionOS | 1.0+ |
-| Windows | 10+ (Swift for Windows) |
-| Linux | Ubuntu 20.04+ |
-
----
-
-## Instalação
-
-### Swift Package Manager (Recomendado)
-
-1. Abra seu projeto no **Xcode** (ou qualquer IDE compatível com SPM)
-2. Vá em **File → Add Package Dependencies...**
-3. Cole a URL do repositório:
-   ```
-   https://github.com/anjggti-eng/AppleDesignSystem.git
-   ```
-4. Selecione **Up to Next Major Version** → **Add Package**
-5. Selecione seu alvo e clique em **Add Package**
-
-### Instalação Manual
-
-1. Baixe ou clone o repositório:
-   ```bash
-   git clone https://github.com/anjggti-eng/AppleDesignSystem.git
-   ```
-2. Arraste a pasta `AppleDesignSystem` para seu projeto
-3. Certifique-se de que **"Copy items if needed"** está selecionado
-4. Clique em **Finish**
-
----
-
 ## Início Rápido
 
+### SwiftUI
 ```swift
 import SwiftUI
 import AppleDesignSystem
 
 struct ContentView: View {
     var body: some View {
-        VStack(spacing: DSSpacing.lg) {
-            // Botão com feedback háptico
-            DSButton("Continuar", style: .filled) {
-                print("Toque!")
-            }
-            
-            // Card com glassmorphism
-            DSCard {
-                Text("Olá Mundo")
-                    .dsTextStyle(.headline)
-            }
-            
-            // Avatar com iniciais
-            DSAvatar(name: "João Silva", size: .lg)
-        }
-        .padding()
+        DSButton("Continuar", style: .filled) {}
     }
 }
 ```
+
+### React
+```jsx
+import { HapticButton, AppleWidget } from './AppleComponents';
+import './AppleDesignSystem.css';
+
+function App() {
+  return (
+    <AppleWidget>
+      <HapticButton variant="primary">Continuar</HapticButton>
+    </AppleWidget>
+  );
+}
+```
+
+### Vue
+```vue
+<script>
+import { HapticButton, AppleWidget } from './AppleDesignSystem';
+</script>
+
+<template>
+  <AppleWidget>
+    <HapticButton variant="primary">Continuar</HapticButton>
+  </AppleWidget>
+</template>
+```
+
+### Angular
+```typescript
+import { HapticButtonComponent } from './haptic-button.component';
+
+@Component({
+  imports: [HapticButtonComponent],
+  template: `<app-haptic-button variant="primary">Continuar</app-haptic-button>`
+})
+```
+
+### Svelte
+```svelte
+<script>
+  import HapticButton from './HapticButton.svelte';
+  import AppleWidget from './AppleWidget.svelte';
+</script>
+
+<AppleWidget>
+  <HapticButton variant="primary">Continuar</HapticButton>
+</AppleWidget>
+```
+
+### HTML/CSS
+```html
+<link rel="stylesheet" href="AppleDesignSystem.css">
+<link rel="stylesheet" href="AppleComponents.css">
+
+<div class="apple-widget">
+  <button class="apple-button apple-button--primary">Continuar</button>
+</div>
+```
+
+---
+
+## Stacks
+
+### SwiftUI (`Sources/`)
+| Componente | Descrição |
+|------------|-----------|
+| DSButton | Botão com 5 estilos + hápticos |
+| DSCard | Containers de card |
+| DSTextField | Campos de input com estados de erro |
+| DSBadge | Badges de status |
+| DSAvatar | Avatares de usuário |
+| DSToggle | Toggle switch |
+| DSSlider | Slider com passos |
+| DSList | Componentes de lista |
+| DSProgressView | Indicadores de progresso |
+| DSAlert | Diálogos de alerta |
+| DSSheet | Bottom sheets |
+| DSLoadingIndicator | Estados de carregamento |
+| DSDatePicker | Seletor de data |
+| DSNavigation | Barra de navegação |
+| DSProfile | Componentes de perfil |
+| DSChart | Gráficos (barra, linha, circular) |
+| DSTimer | Timer, relógio, cronômetro |
+| DSOnboarding | Telas de onboarding |
+| DSNotificationBanner | Banners de notificação |
+
+### React (`React/`)
+| Componente | Descrição |
+|------------|-----------|
+| HapticButton | Botão com feedback háptico |
+| AppleWidget | Card com glassmorphism |
+| AppleInput | Campo de input |
+| AppleSearch | Barra de pesquisa |
+| AppleBadge | Badge de status |
+| AppleAvatar | Avatar de usuário |
+| AppleToggle | Toggle switch |
+| AppleList | Container de lista |
+| AppleListItem | Item de lista |
+| AppleProgress | Barra de progresso |
+| AppleCircularProgress | Progresso circular |
+| AppleLoading | Indicador de carregamento |
+| AppleAlert | Modal de alerta |
+| AppleSheet | Bottom sheet |
+| AppleBanner | Banner de notificação |
+| AppleStat | Card de estatísticas |
+| AppleProfile | Cabeçalho de perfil |
+| AppleOnboarding | Tela de onboarding |
+| AppleTooltip | Tooltip |
+
+### Vue (`Vue/`)
+| Componente | Descrição |
+|------------|-----------|
+| HapticButton | Botão com feedback háptico |
+| AppleWidget | Container de card |
+| AppleInput | Campo de input |
+| AppleList | Container de lista |
+| AppleListItem | Item de lista |
+
+### Angular (`Angular/`)
+| Componente | Descrição |
+|------------|-----------|
+| HapticButtonComponent | Botão com feedback háptico |
+| WidgetComponent | Container de card |
+| InputComponent | Campo de input com CVA |
+
+### Svelte (`Svelte/`)
+| Componente | Descrição |
+|------------|-----------|
+| HapticButton | Botão com feedback háptico |
+| AppleWidget | Container de card |
+| AppleInput | Campo de input |
+| AppleList | Container de lista |
+| AppleListItem | Item de lista |
+
+### HTML/CSS (`Vanilla/`)
+| Classe | Descrição |
+|--------|-----------|
+| apple-widget | Container de card |
+| apple-button | Botão (primary/secondary/destructive/plain) |
+| apple-input | Campo de input |
+| apple-search | Barra de pesquisa |
+| apple-badge | Badge de status |
+| apple-avatar | Avatar de usuário |
+| apple-toggle | Toggle switch |
+| apple-list | Container de lista |
+| apple-progress | Barra de progresso |
+| apple-progress-circular | Progresso circular |
+| apple-loading | Indicador de carregamento |
+| apple-shimmer | Efeito shimmer |
 
 ---
 
 ## Design Tokens
 
-### Cores
-
-```swift
-// Cores do Sistema (Se Adaptam ao Modo Escuro)
-DSColor.System.blue
-DSColor.System.green
-DSColor.System.red
-DSColor.System.orange
-DSColor.System.yellow
-DSColor.System.purple
-DSColor.System.pink
-DSColor.System.teal
-DSColor.System.indigo
-
-// Cores Semânticas
-DSColor.Background.primary
-DSColor.Background.secondary
-DSColor.Background.tertiary
-
-DSColor.Label.primary
-DSColor.Label.secondary
-DSColor.Label.tertiary
-
-DSColor.Fill.primary
-DSColor.Fill.secondary
-DSColor.Fill.tertiary
-
-// Cor Hex Customizada
-Color(hex: "#FF5733")
+### Cores (Semânticas)
 ```
-
-### Tipografia
-
-```swift
-// Baseado em Estilo (Recomendado)
-Text("Título Grande").dsTextStyle(.largeTitle)
-Text("Título 1").dsTextStyle(.title1)
-Text("Título 2").dsTextStyle(.title2)
-Text("Título 3").dsTextStyle(.title3)
-Text("Manchete").dsTextStyle(.headline)
-Text("Corpo").dsTextStyle(.body)
-Text("Chamada").dsTextStyle(.callout)
-Text("Subtítulo").dsTextStyle(.subheadline)
-Text("Rodapé").dsTextStyle(.footnote)
-Text("Legenda").dsTextStyle(.caption)
-
-// Acesso Direto à Fonte
-DSTypography.largeTitle
-DSTypography.body
-DSTypography.rounded(.title2, weight: .bold)
+Fundo da Ação          #007AFF    Destruição       #FF3B30
+Sucesso                #34C759    Aviso            #FF9500
+Erro                   #FF3B30    Informação       #007AFF
+Fundo Primário         #FFFFFF    Fundo Secundário #F2F2F7
+Label Primário         #000000    Label Secundário rgba(60,60,67,0.6)
 ```
 
 ### Espaçamento
-
-```swift
-// Tokens de Espaçamento
-DSSpacing.xxs  // 2pt
-DSSpacing.xs   // 4pt
-DSSpacing.sm   // 8pt
-DSSpacing.md   // 12pt
-DSSpacing.lg   // 16pt
-DSSpacing.xl   // 20pt
-DSSpacing.xxl  // 24pt
-DSSpacing.xxxl // 32pt
-
-// Tokens de Raio
-DSRadius.sm   // 8pt
-DSRadius.md   // 12pt
-DSRadius.lg   // 14pt
-DSRadius.xl   // 16pt
-DSRadius.xxl  // 20pt
-DSRadius.pill // Formato cápsula
+```
+2px  4px  8px  12px  16px  20px  24px  32px
+xxs   xs   sm   md    lg    xl   xxl  xxxl
 ```
 
-### Animações
-
-```swift
-// Animações Spring (Padrão Apple)
-DSAnimation.Spring.default   // response: 0.35, damping: 0.7
-DSAnimation.Spring.snappy    // response: 0.25, damping: 0.8
-DSAnimation.Spring.bouncy    // response: 0.50, damping: 0.6
-DSAnimation.Spring.gentle    // response: 0.45, damping: 0.85
-
-// Baseadas em Duração
-DSAnimation.easeIn
-DSAnimation.easeOut
-DSAnimation.easeInOut
-
-// Uso
-.animation(DSAnimation.Spring.default, value: true)
+### Raios
+```
+8px  12px  14px  16px  20px  9999px
+sm    md    lg    xl   xxl    pill
 ```
 
 ### Sombras
-
-```swift
-// Estilos de Sombra
-DSShadow.sm  // y=1, blur=2, opacidade=0.05
-DSShadow.md  // y=2, blur=8, opacidade=0.10
-DSShadow.lg  // y=4, blur=16, opacidade=0.15
-DSShadow.xl  // y=8, blur=32, opacidade=0.20
-
-// Uso
-.dsShadow(DSShadow.md)
+```
+sm  0 1px 2px rgba(0,0,0,0.05)
+md  0 2px 8px rgba(0,0,0,0.1)
+lg  0 4px 16px rgba(0,0,0,0.15)
+xl  0 8px 32px rgba(0,0,0,0.2)
 ```
 
-### Materiais
-
-```swift
-// Materiais Glassmorphism
-DSMaterial.ultraThin
-DSMaterial.thin
-DSMaterial.regular
-DSMaterial.thick
-DSMaterial.ultraThick
-
-// Uso
-.background(DSMaterial.regular)
+### Tipografia
 ```
-
-### Hápticos
-
-```swift
-// Feedback de Impacto
-DSHaptics.impact(.light)
-DSHaptics.impact(.medium)
-DSHaptics.impact(.heavy)
-
-// Feedback de Notificação
-DSHaptics.notification(.success)
-DSHaptics.notification(.warning)
-DSHaptics.notification(.error)
-
-// Padrões Predefinidos
-DSHaptics.buttonTap()
-DSHaptics.toggleSwitch()
-DSHaptics.success()
+34px bold    large-title
+28px bold    title1
+22px bold    title2
+20px semi    title3
+17px semi    headline
+17px regular body
+15px regular subheadline
+13px regular footnote
+12px regular caption1
+11px regular caption2
 ```
 
 ---
 
-## Componentes
+## AI Agent
 
-### DSButton
+Este Design System inclui **System Prompts** para transformar uma IA em gerador de UI.
 
-```swift
-// Estilos
-DSButton("Preenchido", style: .filled) { }
-DSButton("Com Borda", style: .bordered) { }
-DSButton("Simples", style: .plain) { }
-DSButton("Vidro", style: .glass) { }
-DSButton("Excluir", style: .destructive) { }
+### Como usar
 
-// Com Ícone
-DSButton("Entrar", icon: Image(systemName: "arrow.right")) { }
+1. Copie `SYSTEM_PROMPT_UNIVERSAL.md`
+2. Cole como System Prompt no Cursor, Claude Projects ou Custom GPT
+3. Pergunte: "Crie uma tela de login"
+4. O agente gera o código usando seu Design System
 
-// Estado de Carregamento
-DSButton("Carregando...", isLoading: true) { }
-```
+### Prompts Disponíveis
 
-### DSCard
-
-```swift
-// Card Básico
-DSCard {
-    Text("Conteúdo do Card")
-}
-
-// Card com Cabeçalho
-DSCardWithHeader(
-    header: { Text("Configurações") }
-) {
-    VStack(alignment: .leading, spacing: 12) {
-        Text("Opção 1")
-        Text("Opção 2")
-    }
-}
-```
-
-### DSTextField
-
-```swift
-// Campo Básico
-DSTextField("Digite aqui", text: $texto)
-
-// Com Título e Ícone
-DSTextField("Email", text: $email, title: "Endereço de Email", icon: Image(systemName: "envelope"))
-
-// Barra de Pesquisa
-DSSearchBar("Pesquisar...", text: $pesquisa)
-```
-
-### DSBadge
-
-```swift
-// Badge Preenchido
-DSBadge("Novo")
-DSBadge("Ativo", color: .green)
-
-// Badge Com Borda
-DSBadge("Pendente", style: .outlined, color: .orange)
-
-// Badge de Contagem
-DSCountBadge(count: 5)
-```
-
-### DSAvatar
-
-```swift
-// Tamanhos de Avatar
-DSAvatar(name: "João Silva", size: .sm)
-DSAvatar(name: "João Silva", size: .md)
-DSAvatar(name: "João Silva", size: .lg)
-
-// Grupo de Avatares
-DSAvatarGroup(names: ["João", "Maria", "Pedro"], size: .md, maxVisible: 3)
-```
-
-### DSToggle
-
-```swift
-// Toggle Básico
-DSToggle("Modo Escuro", isOn: $modoEscuro)
-
-// Toggle Card
-DSToggleCard(
-    title: "Wi-Fi",
-    subtitle: "Rede Doméstica",
-    icon: Image(systemName: "wifi"),
-    isOn: $wifiAtivado
-)
-```
-
-### DSSlider
-
-```swift
-// Slider Básico
-DSSlider("Volume", value: $volume)
-
-// Stepper
-DSStepper("Quantidade", value: $quantidade, in: 1...10)
-```
-
-### DSList
-
-```swift
-DSSection(header: { Text("GERAL") }) {
-    DSListRowSimple("Wi-Fi", icon: Image(systemName: "wifi"))
-    DSListRowSimple("Bluetooth", icon: Image(systemName: "antenna.radiowaves.left.and.right"))
-}
-```
-
-### DSProgressView
-
-```swift
-// Linear
-DSProgressView(value: 65, label: "Progresso do Upload")
-
-// Circular
-DSProgressView(value: 30, style: .circular)
-
-// Segmentado
-DSProgressView(value: 60, style: .segmented(5))
-```
-
-### DSAlert
-
-```swift
-@State private var mostrarAlerta = false
-
-.dsAlert(
-    type: .success,
-    title: "Sucesso!",
-    message: "Alterações salvas.",
-    isPresented: $mostrarAlerta
-)
-```
-
-### DSSheet
-
-```swift
-@State private var mostrarSheet = false
-
-.dsSheet(title: "Opções", isPresented: $mostrarSheet) {
-    Text("Conteúdo do Sheet")
-}
-```
-
-### DSLoadingIndicator
-
-```swift
-DSLoadingIndicator(style: .spinner)
-DSLoadingIndicator(style: .dots)
-DSLoadingIndicator(style: .pulse)
-DSLoadingIndicator(style: .progress)
-```
-
----
-
-## Modificadores
-
-```swift
-// Estilo Card
-.dsCard()
-
-// Pressionável com Hápticos
-.dsPressable()
-
-// Glassmorphism
-.dsGlass()
-
-// Shimmer de Carregamento
-.dsShimmer()
-
-// Hierarquia de Texto
-.dsTextStyle(.headline)
-
-// Sombra Customizada
-.dsShadow(DSShadow.lg)
-```
+| Arquivo | Stack |
+|---------|-------|
+| `SYSTEM_PROMPT_UNIVERSAL.md` | TODAS as stacks |
+| `SYSTEM_PROMPT_SWIFTUI.md` | Apenas SwiftUI |
+| `SYSTEM_PROMPT_REACT.md` | Apenas React |
 
 ---
 
@@ -463,39 +288,37 @@ DSLoadingIndicator(style: .progress)
 
 ```
 AppleDesignSystem/
-├── Sources/AppleDesignSystem/
-│   ├── Tokens/                    # Design tokens
-│   │   ├── DSTokens.swift         # Cores (multiplataforma)
-│   │   ├── DSTypography.swift     # Fontes
-│   │   ├── DSSpacing.swift        # Espaçamento e Raio
-│   │   ├── DSAnimation.swift      # Animações
-│   │   ├── DSShadow.swift         # Sombras
-│   │   ├── DSMaterial.swift       # Glassmorphism
-│   │   └── DSHaptics.swift        # Feedback háptico (multiplataforma)
-│   ├── Modifiers/                 # ViewModifiers
-│   │   ├── DSCardModifier.swift
-│   │   ├── DSPressableModifier.swift
-│   │   ├── DSTextModifier.swift
-│   │   ├── DSGlassModifier.swift
-│   │   └── DSShimmerModifier.swift
-│   └── Components/                # Componentes UI
-│       ├── DSButton.swift
-│       ├── DSCard.swift
-│       ├── DSTextField.swift
-│       ├── DSBadge.swift
-│       ├── DSAvatar.swift
-│       ├── DSToggle.swift
-│       ├── DSSlider.swift
-│       ├── DSList.swift
-│       ├── DSProgressView.swift
-│       ├── DSAlert.swift
-│       ├── DSSheet.swift
-│       └── DSLoadingIndicator.swift
-├── Examples/                      # Telas de exemplo
-├── Tests/                         # Testes unitários
-├── Package.swift                  # Manifesto SPM
-├── LICENSE                        # Licença MIT
-└── README.md                      # Este arquivo
+├── Sources/                 # SwiftUI (iOS/macOS)
+│   ├── Tokens/              # Cores, Tipografia, Espaçamento, Animações
+│   ├── Modifiers/           # ViewModifiers
+│   └── Components/          # 20+ componentes SwiftUI
+├── React/                   # React/JSX
+│   ├── AppleDesignSystem.css
+│   ├── AppleComponents.css
+│   ├── HapticButton.jsx
+│   └── AppleComponents.jsx
+├── Vue/                     # Vue.js
+│   ├── HapticButton.vue
+│   ├── AppleWidget.vue
+│   └── ...
+├── Angular/                 # Angular
+│   ├── haptic-button.component.ts
+│   ├── widget.component.ts
+│   └── input.component.ts
+├── Svelte/                  # Svelte
+│   ├── HapticButton.svelte
+│   ├── AppleWidget.svelte
+│   └── ...
+├── Vanilla/                 # HTML/CSS
+│   └── index.html
+├── Examples/                # Exemplos SwiftUI
+├── Demo/                    # App demo SwiftUI
+├── Tests/                   # Testes unitários
+├── Resources/               # tokens.json
+├── SYSTEM_PROMPT_*.md       # Prompts de AI Agent
+├── Package.swift            # Manifesto SPM
+├── LICENSE                  # Licença MIT
+└── README.md                # Este arquivo
 ```
 
 ---
@@ -528,6 +351,8 @@ Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICE
 <div align="center">
 
 ### Feito com paixão pelo ecossistema Apple
+
+**Funciona em SwiftUI • React • Vue • Angular • Svelte • HTML/CSS**
 
 **Funciona em Windows • Linux • macOS • iOS • watchOS • visionOS**
 
